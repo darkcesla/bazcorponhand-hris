@@ -1,0 +1,114 @@
+@extends('layout.main')
+@section('content')
+
+    <div class="content-wrapper">
+        <div class="content-header">
+        </div>
+        <section class="content">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center mb-2">
+                    <div class="col">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb" style="background-color: transparent;">
+                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.shift_daily') }}">Shift Daily</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('admin.shift_daily.update', ['id' => $shift_daily->id]) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="container-fluid px-4">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Shift Daily Code</label>
+                                    <input name="shift_daily_code" value="{{ $shift_daily->shift_daily_code }}"
+                                        type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Day Type</label>
+                                    <select name="day_type" id="day_type" class="form-control" required>
+                                        <option value="weekday" {{ $shift_daily->day_type == 'weekday' ? 'selected' : '' }}>
+                                            Weekday</option>
+                                        <option value="holiday" {{ $shift_daily->day_type == 'holiday' ? 'selected' : '' }}>
+                                            Holiday</option>
+                                        <option value="offday" {{ $shift_daily->day_type == 'offday' ? 'selected' : '' }}>
+                                            Offday</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Start Time</label>
+                                    <input name="start_time" value="{{ $shift_daily->start_time }}" type="time"
+                                        class="form-control" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">End Time</label>
+                                    <input name="end_time" value="{{ $shift_daily->end_time }}" type="time"
+                                        class="form-control" required>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Grace for Late</label>
+                                    <div class="input-group">
+                                        <input name="grace_for_late" value="{{ $shift_daily->grace_for_late }}"
+                                            type="number" class="form-control" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Minute(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Productive Work Time</label>
+                                    <div class="input-group">
+                                        <input name="productive_work_time" value="{{ $shift_daily->productive_work_time }}"
+                                            type="number" class="form-control" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Minute(s)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Break Time Start</label>
+                                    <input name="break_start" value="{{ $shift_daily->break_start }}" type="time"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Break Time End</label>
+                                    <input name="break_end" value="{{ $shift_daily->break_end }}" type="time"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="col-form-label form-label">Remark</label>
+                                    <input name="remark" value="{{ $shift_daily->remark }}" type="text"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-8">
+                                    <label></label>
+                                    <div class=""
+                                        style="d-flex justify-content-center align-items-center text-align:center">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        const checkbox = document.getElementById('flex_check');
+        const hiddenInput = document.querySelector('input[name="flexible_shift"]');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                hiddenInput.value = 1; // Set value to 1 when checked
+            } else {
+                hiddenInput.value = 0; // Set value to 0 when unchecked
+            }
+        });
+    </script>
+
+@stop

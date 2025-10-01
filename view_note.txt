@@ -1,0 +1,33 @@
+what must to do:
+silahkan cek pada folder resource/view, ada beberapa view yang fieldnya perlu diubah.
+Contoh lengkapnya ada di folder resource/view/daily_shift
+Untuk mengetahui field apa saja yang digunakan pada form, lihat di folder app/model
+tandai seperti (on going) jika sedang dikerjakan dan (done) jika sudah selesai
+langsung push ke branch main
+
+already modify:
+-attendance_location
+-company
+-attendance
+-division
+-employee
+-employee_bank_account
+-overtime_salary
+-shift_daily
+
+todo:
+-employee_attendance_location
+-employee_career
+-employee_leave_balance
+-employee_leave_history
+-employee_payroll (on going) 
+-employee_pay_slip
+-employee_shift
+-employee_shift_group
+-holiday
+-leave_type
+-limit_date
+-mass_leave
+-notification
+-shift_group
+-shift_group_detail
